@@ -5,7 +5,6 @@ int		parse_file(char *file, t_all *all)
 	int fd;
 	char *line; //куда записывается строка, считываемая gnl
 	char *newline; //строка файла, склеенная вместе с \n
-	//char *tmp;
 
 	fd = open(file, O_RDONLY);
 	newline = (char*)malloc(1);
@@ -50,7 +49,21 @@ int		type_identifier(t_all *all, char *str, t_key *key)
 	return (1);
 }
 
-void	parse_all(char **argv, t_all *all)
+
+void map_part(int i, t_all *all)
+{
+	while (is_empty(all->array[i]))
+		i++;
+	map_size(all, i);
+
+	create_map(all, i);
+	parse_map(all);
+	num_of_sprites(all);
+	sprites_coord(all);
+	player_pos(all);
+}
+
+void	  parse_all(char **argv, t_all *all)
 {
 	int i;
 	t_key key;
@@ -77,17 +90,4 @@ void	parse_all(char **argv, t_all *all)
 		error(4, all);
 	check_color(all);
 	map_part(i, all);
-}
-
-void map_part(int i, t_all *all)
-{
-	while (is_empty(all->array[i]))
-		i++;
-	map_size(all, i);
-
-	create_map(all, i);
-	parse_map(all);
-	num_of_sprites(all);
-	sprites_coord(all);
-	player_pos(all);
 }

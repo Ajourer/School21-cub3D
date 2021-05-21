@@ -13,7 +13,7 @@ void error(int error, t_all *all)
 	if (error == 5)
 		printf("Error\nFile can't be opened!\n");
 	if (error == 6)
-		printf("Error\nWrong file");
+		printf("Error\nWrong file\n");
 	if (error == 7)
 		printf("Error\nInvalid texture");
 	free_all(all);

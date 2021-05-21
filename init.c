@@ -15,15 +15,16 @@ void		init_key(t_key *key)
 
 static void	all_malloc(t_all *all)
 {
-	all->win = malloc(sizeof(t_window));
-	all->tex = malloc(sizeof(t_tex));
-	all->clr = malloc(sizeof(t_color));
-	all->info = malloc(sizeof(t_info));
-	all->n_i = malloc(sizeof(t_imgt));
-	all->s_i = malloc(sizeof(t_imgt));
-	all->w_i = malloc(sizeof(t_imgt));
-	all->e_i = malloc(sizeof(t_imgt));
-	all->sp_i = malloc(sizeof(t_imgt));
+	all->win = malloc(sizeof(t_window) * 1);
+	all->tex = malloc(sizeof(t_tex) * 1);
+	all->clr = malloc(sizeof(t_color) * 1);
+	all->info = malloc(sizeof(t_info) * 1);
+	all->n_i = malloc(sizeof(t_imgt) * 1);
+	all->s_i = malloc(sizeof(t_imgt) * 1);
+	all->w_i = malloc(sizeof(t_imgt) * 1);
+	all->e_i = malloc(sizeof(t_imgt) * 1);
+	all->sp_i = malloc(sizeof(t_imgt) * 1);
+	all->img = malloc(sizeof(t_img) * 1);
 }
 
 void		init_all(t_all *all)

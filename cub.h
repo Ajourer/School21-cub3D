@@ -6,7 +6,8 @@
 # include <math.h>
 # include "mlx/mlx.h"
 
-typedef	struct	s_imgt {
+typedef	struct	s_imgt //структура для текстур в зависимости от стороны света
+{
 	void		*img;
 	char		*addr;
 	int			bpp;
@@ -15,6 +16,15 @@ typedef	struct	s_imgt {
 	int			w;
 	int			h;
 }				t_imgt;
+
+typedef struct	s_img
+{
+	void *img;
+	char *addr;
+	int bpp;
+	int ll;
+	int endian;
+}				t_img;
 
 typedef struct	s_spr
 {
@@ -36,9 +46,10 @@ typedef struct	s_window
 {
 	int			width;
 	int			height;
+	void 		*win;
 }				t_window;
 
-typedef struct	s_tex
+typedef struct	s_tex //сюда закидываем путь к текстурам
 {
 	char		*no;
 	char		*so;
@@ -124,8 +135,10 @@ typedef struct	s_all
 	t_imgt		*w_i;
 	t_imgt		*e_i;
 	t_imgt		*sp_i;
+	t_img 		*img;
 	
 
+	int			color;
 	int			num_spr;
 	char		**array; //массив из строк файла
 	int			screenshot;
@@ -212,5 +225,7 @@ void	check_color(t_all *all);
 void	load_texture(t_all *all, char *dir, t_imgt *dir_st);
 void 	load_images(t_all *all);
 void	check_arguments(t_all *all, int argc, char **argv);
+void	my_pixel_put(t_all *all, int x, int y, int color);
+int 	calculation(t_all *all);
 
 #endif

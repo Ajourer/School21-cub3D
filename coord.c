@@ -65,8 +65,9 @@ void player_pos(t_all *all)
 			all->map[i][j] == 'W' || all->map[i][j] == 'E')
 			{
 				all->info->pos_x = j + 0.5;
-				all->info->pos_y = i + 0.5; 
+				all->info->pos_y = i + 0.5;
 				player_dir(all, all->map[i][j]);
+				all->map[i][j] = '0';
 				return ;
 			}
 			j++;

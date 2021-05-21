@@ -18,6 +18,3 @@ void 	load_images(t_all *all)
 	load_texture(all, all->tex->ea, all->e_i);
 	load_texture(all, all->tex->sprites, all->sp_i);
 }
-
-
-

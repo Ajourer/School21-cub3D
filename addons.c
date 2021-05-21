@@ -39,17 +39,17 @@ int num_of_lines(char **file)
 	return (l);
 }
 
-void fill_space(t_all *all, char *str)
-{
-	int i;
-	
-	i = 0;
-	while (str[i])
-		i++;
-	if (i < all->map_w)
-	{
-		while (i <= all->map_w)
-			str[i] = ' ';
-	}
-}
+//void fill_space(t_all *all, char *str)
+//{
+//	int i;
+//	
+//	i = 0;
+//	while (str[i])
+//		i++;
+//	if (i < all->map_w)
+//	{
+//		while (i <= all->map_w)
+//			str[i] = ' ';
+//	}
+//}
 

@@ -1,124 +1,191 @@
-#include "mlx/mlx.h"
-#include <math.h>
-#include <stdio.h>
+#include "cub.h"
 
-void calculation(t_rayCast *rc, t_window *win, t_info *inf, t_texture *tex)
+int r_g_b(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
+}
+
+void	floor_paint(t_all *all)
+{
+	int x;
+	int y;
+	int color;
+
+	x = 0;
+	y = all->win->width / 2;
+	color = r_g_b(all->clr->f_r, all->clr->f_g, all->clr->f_b);
+	while (x < all->win->width)
+	{
+		while (y < all->win->height)
+		{
+			my_pixel_put(all, x, y, color);
+			y++;
+		}
+		y = all->win->height / 2;
+		x++;
+	}
+}
+
+void	ceiling_paint(t_all *all)
+{
+	int x;
+	int y;
+	int color;
+
+	x = 0;
+	y = 0;
+	color = r_g_b(all->clr->c_r, all->clr->c_g, all->clr->c_b);
+	while (x < all->win->width)
+	{
+		while (y < all->win->height / 2)
+		{
+			my_pixel_put(all, x, y, color);
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+}
+
+t_imgt what_color(t_all *all)
+{
+	t_imgt color;
+
+	if (all->info->side == 0 && all->info->stepX > 0)
+		color = *all->e_i;
+	if (all->info->side == 0 && all->info->stepX < 0)
+		color = *all->w_i;
+	if (all->info->side == 1 && all->info->stepY < 0)
+		color = *all->n_i;
+	if (all->info->side == 1 && all->info->stepY > 0)
+		color = *all->s_i;
+	
+	if (all->info->side == 0)
+		all->info->wallX = all->info->pos_y +
+						   all->info->perpWallDist * all->info->rayDirY;
+	else
+		all->info->wallX = all->info->pos_x +
+						   all->info->perpWallDist * all->info->rayDirX;
+	all->info->wallX -= floor((all->info->wallX));
+
+	all->info->texWidth = 64;
+	all->info->texHeight = 64;
+	all->info->texX = (int) (all->info->wallX *
+							 (double) all->info->texWidth);
+	if (all->info->side == 0 && all->info->rayDirX > 0)
+		all->info->texX = all->info->texWidth - all->info->texX - 1;
+	if (all->info->side == 1 && all->info->rayDirY < 0)
+		all->info->texX = all->info->texWidth - all->info->texX - 1;
+
+	all->info->step = 1.0 * all->info->texHeight / all->info->lineHeight;
+
+	all->info->texPos = (all->info->drawStart - all->win->height / 2 +
+			all->info->lineHeight / 2) * all->info->step;
+	return (color);
+}
+
+int calculation(t_all *all)
 {
 	int x;
 
 	x = 0;
 
-	while (x < win->width)
+	//printf("|%f|\n", all->info->pos_x);
+	floor_paint(all);
+	ceiling_paint(all);
+	while (x < all->win->width)
 	{
-		printf("%d\n", 1);
-		rc->cameraX = 2 * x / (double)win->width - 1;
-		rc->rayDirX = inf->dirX + inf->planeX * rc->cameraX;
-		rc->rayDirY = inf->dirY + inf->planeY * rc->cameraX;
-		rc->mapX = (int)inf->posX;
-		rc->mapY = (int)inf->posY;
-		rc->deltaDistX = fabs(1 / rc->rayDirX);
-		rc->deltaDistY = fabs(1 / rc->rayDirY);
-		rc->hit = 0;
+		all->info->cameraX = 2 * x / (double) all->win->width - 1;
+		all->info->rayDirX =
+				all->info->dir_x + all->info->plane_x * all->info->cameraX;
+		all->info->rayDirY =
+				all->info->dir_y + all->info->plane_y * all->info->cameraX;
+		all->info->mapX = (int) all->info->pos_x;
+		all->info->mapY = (int) all->info->pos_y;
+		all->info->deltaDistX = fabs(1 / all->info->rayDirX);
+		all->info->deltaDistY = fabs(1 / all->info->rayDirY);
+		all->info->hit = 0;
 
-		if(rc->rayDirX < 0)
+		if (all->info->rayDirX < 0)
 		{
-			rc->stepX = -1;
-			rc->sideDistX = (inf->posX - rc->mapX) * rc->deltaDistX;
+			all->info->stepX = -1;
+			all->info->sideDistX = (all->info->pos_x - all->info->mapX) *
+								   all->info->deltaDistX;
 		}
 		else
 		{
-			rc->stepX = 1;
-			rc->sideDistX = (rc->mapX + 1.0 - inf->posX) * rc->deltaDistX;
+			all->info->stepX = 1;
+			all->info->sideDistX = (all->info->mapX + 1.0 - all->info->pos_x) *
+								   all->info->deltaDistX;
 		}
-		if(rc->rayDirY < 0)
+		if (all->info->rayDirY < 0)
 		{
-			rc->stepY = -1;
-			rc->sideDistY = (inf->posY - rc->mapY) * rc->deltaDistY;
+			all->info->stepY = -1;
+			all->info->sideDistY = (all->info->pos_y - all->info->mapY) *
+								   all->info->deltaDistY;
 		}
 		else
 		{
-			rc->stepY = 1;
-			rc->sideDistY = (rc->mapY + 1.0 - inf->posY) * rc->deltaDistY;
+			all->info->stepY = 1;
+			all->info->sideDistY = (all->info->mapY + 1.0 - all->info->pos_y) *
+								   all->info->deltaDistY;
 		}
 
-		while (rc->hit == 0)
+		while (all->info->hit == 0)
 		{
-			if(rc->sideDistX < rc->sideDistY)
+			if (all->info->sideDistX < all->info->sideDistY)
 			{
-				rc->sideDistX += rc->deltaDistX;
-				rc->mapX += rc->stepX;
-				rc->side = 0;
+				all->info->sideDistX += all->info->deltaDistX;
+				all->info->mapX += all->info->stepX;
+				all->info->side = 0;
 			}
 			else
 			{
-				rc->sideDistY += rc->deltaDistY;
-				rc->mapY += rc->stepY;
-				rc->side = 1;
+				all->info->sideDistY += all->info->deltaDistY;
+				all->info->mapY += all->info->stepY;
+				all->info->side = 1;
 			}
-			rc->hit = 1;
+			if (all->map[all->info->mapY][all->info->mapX] == '1')
+				all->info->hit = 1;
 		}
 
-		if(rc->side == 0)
-			rc->perpWallDist = (rc->mapX - inf->posX + (1 - rc->stepX) / 2) /
-					rc->rayDirX;
+		if (all->info->side == 0)
+			all->info->perpWallDist = (all->info->mapX - all->info->pos_x +
+					(1 - all->info->stepX) / 2) / all->info->rayDirX;
 		else
-			rc->perpWallDist = (rc->mapY - inf->posY + (1 - rc->stepY) / 2) /
-					rc->rayDirY;
+			all->info->perpWallDist = (all->info->mapY - all->info->pos_y +
+					(1 - all->info->stepY) / 2) / all->info->rayDirY;
 
-		rc->lineHeight = (int)(win->height / rc->perpWallDist);
+		all->info->lineHeight = (int) (all->win->height /
+									   all->info->perpWallDist);
 
-		rc->drawStart = -rc->lineHeight / 2 + win->height / 2;
-		if(rc->drawStart < 0)
-			rc->drawStart = 0;
-		rc->drawEnd = rc->lineHeight / 2 + win->height / 2;
-		if(rc->drawEnd >= win->height)
-			rc->drawEnd = win->height - 1;
-
-		if(rc->side == 0)
-			rc->wallX = inf->posY + rc->perpWallDist * rc->rayDirY;
-		else
-			rc->wallX = inf->posX + rc->perpWallDist * rc->rayDirX;
-		rc->wallX -= floor((rc->wallX));
-
-		tex->texWidth = 64;
-		tex->texHeight = 64;
-		rc->texX = (int)(rc->wallX * (double)tex->texWidth);
-		if(rc->side == 0 && rc->rayDirX > 0)
-			rc->texX = tex->texWidth - rc->texX - 1;
-		if(rc->side == 1 && rc->rayDirY < 0)
-			rc->texX = tex->texWidth - rc->texX - 1;
-
-		rc->step = 1.0 * tex->texHeight / rc->lineHeight;
-
-		rc->texPos = (rc->drawStart - win->height / 2 + rc->lineHeight / 2) *
-				rc->step;
+		all->info->drawStart =
+				-all->info->lineHeight / 2 + all->win->height / 2;
+		if (all->info->drawStart < 0)
+			all->info->drawStart = 0;
+		all->info->drawEnd = all->info->lineHeight / 2 + all->win->height / 2;
+		if (all->info->drawEnd >= all->win->height)
+			all->info->drawEnd = all->win->height - 1;
+		t_imgt texture;
+		
+		texture = what_color(all);
 		int y;
 		int color;
 
-		y = rc->drawStart;
-		while (y < rc->drawEnd)
+		y = all->info->drawStart;
+		while (y < all->info->drawEnd)
 		{
-			rc->texY = (int)rc->texPos & (tex->texHeight - 1);
-			rc->texPos += rc->step;
-			//color = ((int*)(inf->texture))
-			//		[tex->texHeight * rc->texY + rc->texX];
+			all->info->texY =
+					(int) all->info->texPos & (all->info->texHeight - 1);
+			all->info->texPos += all->info->step;
+			color = ((int *)texture.addr)
+					[all->info->texHeight * all->info->texY + 
+					all->info->texX];
+			my_pixel_put(all, x, y, color);
 			y++;
 		}
-
 		x++;
 	}
-}
-
-int main(void)
-{
-	t_texture tex;
-	t_info inf;
-	t_window win;
-	t_rayCast rc;
-	win.width = 800;
-	win.height = 600;
-
-	calculation(&rc, &win, &inf, &tex);
+	mlx_put_image_to_window(all->mlx, all->win->win, all->img->img, 0, 0);
 	return (0);
 }
-
