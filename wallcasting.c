@@ -186,6 +186,7 @@ int calculation(t_all *all)
 		}
 		x++;
 	}
+	//sprites(all);
 	mlx_put_image_to_window(all->mlx, all->win->win, all->img->img, 0, 0);
 	return (0);
 }

@@ -5,7 +5,6 @@ void check_empty(char *file, t_all *all)
 	int		fd;
 	char	*line;
 	int		flag;
-	printf("%s\n", all->map[0]);
 	flag = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -24,6 +23,7 @@ void check_arguments(t_all *all, int argc, char **argv)
 	if (argc == 2 && map_name(argv[1], all) == 1)
 	{
 		parse_all(argv, all);
+		printf("|%s|\n", all->map[0]);
 		check_empty(argv[1], all);
 		all->win->win = mlx_new_window(all->mlx, all->win->width,
 								 all->win->height,"cub3D");
@@ -32,11 +32,9 @@ void check_arguments(t_all *all, int argc, char **argv)
 			 && !ft_strncmp(argv[2], "--save", 6))
 	{
 		parse_all(argv, all);
-		check_empty(argv[1], all);
+		//check_empty(argv[1], all);
 		all->screenshot = 1;
 	}
-	else
-		error(6, all);
 }
 
 void check_color(t_all *all)

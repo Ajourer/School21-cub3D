@@ -30,9 +30,10 @@ void create_map(t_all *all, int j)
 	int i;
 
 	i = 0;
+	printf("||%s||\n", all->array[j]);
 	all->map = (char **)malloc((all->map_h + 1) * sizeof(char *));
 	all->map[all->map_h] = 0;
-	if (!all->map)
+	/*if (!all->map)
 		error(1, all);
 	while (all->map[i])
 	{
@@ -44,12 +45,21 @@ void create_map(t_all *all, int j)
 		i++;
 	}
 	i = 0;
-	while (all->map[i])
+	while (all->array[j])
 	{
 		ft_strlcpy(all->map[i], all->array[j]);
 		i++;
 		j++;
+	}*/
+	int k = all->map_h;
+	i = 0;
+	while (k){
+		all->map[i] = ft_strdup(all->array[j]);
+		i++;
+		j++;
+		k--;
 	}
+	printf("map[0]||%s||\n", all->map[0]);
 }
 
 void parse_map(t_all *all)

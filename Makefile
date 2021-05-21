@@ -1,4 +1,4 @@
-SRC = main.c \
+SRCS = main.c \
 	  parse.c \
 	  map_parse.c \
 	  get_next_line.c \
@@ -17,14 +17,20 @@ SRC = main.c \
 		mlx.c \
 		wallcasting.c\
 
-OBJ = $(patsubst %c,%o,$(SRC))
+CC = gcc
+CFLAGS = -g -Wall -Wextra -Werror
+
+
+OBJS = $(SRCS:.c=.o)
 NAME = cub3D
 
 all: 		$(NAME)
 
-$(NAME):	$(OBJ)
-			gcc  -g  -Wall -Wextra -framework OpenGL -framework AppKit -L./libft -lft mlx/libmlx.a  $(OBJ) -o $(NAME)
+$(NAME):	$(OBJS)
+			gcc   $(CFLAGS) -framework OpenGL -framework AppKit -L./libft -lft mlx/libmlx.a  $(OBJS) -o $(NAME)
+clean:
+		rm -rf $(OBJS)
 fclean:
-		rm -rf $(OBJ)
+		rm -rf $(OBJS)
 		rm -rf $(NAME)
 re: fclean all
