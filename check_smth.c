@@ -5,7 +5,7 @@ void check_arguments(t_all *all, int argc, char **argv)
 	if (argc == 2 && map_name(argv[1], all) == 1)
 	{
 		parse_all(argv, all);
-		all->win = mlx_new_window(all->mlx, all->win->width, all->win->height,
+		all->win = mlx_new_window(all-, all->win->width, all->win->height,
 							"cub3D");
 	}
 	else if (argc == 3 && !ft_strncmp(argv[2], "--save", ft_strlen(argv[2]))
