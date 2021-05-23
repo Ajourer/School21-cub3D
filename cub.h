@@ -26,6 +26,28 @@ typedef struct	s_img
 	int endian;
 }				t_img;
 
+typedef struct	s_sprites
+{
+	int			*sprite_order;
+	double		*sprite_distance;
+	double		sprite_x;
+	double		sprite_y;
+	double		inv_det;
+	double		transform_x;
+	double		transform_y;
+	int			sprite_screen_x;
+	int			sprite_height;
+	int			draw_start_y;
+	int			draw_end_y;
+	int			sprite_width;
+	int			draw_start_x;
+	int			draw_end_x;
+	int			stripe;
+	int			tex_x;
+	int			tex_y;
+	int			color;
+}				t_sprites;
+
 typedef struct	s_spr
 {
 	double 			x;
@@ -71,11 +93,12 @@ typedef struct	s_info
 	int			key_s;
 	int			key_d;
 	int			key_esc;
-	double		*zBuffer;
 	//int			**texture;
 	double		moveSpeed;
 	double		rotSpeed;
-
+	
+	double		*zBuffer;
+	
 	double		cameraX;
 	double		rayDirX;
 	double		rayDirY;
@@ -137,11 +160,11 @@ typedef struct	s_all
 	t_imgt		*sp_i;
 	t_img 		*img;
 	
-
-	int			color;
+	//int			color;
 	int			num_spr;
 	char		**array; //массив из строк файла
 	int			screenshot;
+	t_sprites 	*s;
 }				t_all;
 
 //typedef struct	s_rayCast
@@ -227,5 +250,6 @@ void 	load_images(t_all *all);
 void	check_arguments(t_all *all, int argc, char **argv);
 void	my_pixel_put(t_all *all, int x, int y, int color);
 int 	calculation(t_all *all);
+void	sprites(t_all *all, t_sprites *s);
 
 #endif

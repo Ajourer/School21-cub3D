@@ -15,7 +15,8 @@ SRCS = main.c \
 		check_tex.c \
 		check_smth.c \
 		mlx.c \
-		wallcasting.c\
+		wallcasting.c \
+		sprites.c \
 
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror

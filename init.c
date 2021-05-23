@@ -25,6 +25,7 @@ static void	all_malloc(t_all *all)
 	all->e_i = malloc(sizeof(t_imgt) * 1);
 	all->sp_i = malloc(sizeof(t_imgt) * 1);
 	all->img = malloc(sizeof(t_img) * 1);
+	all->s = malloc(sizeof(t_sprites) * 1);
 }
 
 void		init_all(t_all *all)

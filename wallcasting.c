@@ -10,6 +10,7 @@ void	floor_paint(t_all *all)
 	int x;
 	int y;
 	int color;
+	
 
 	x = 0;
 	y = all->win->width / 2;
@@ -87,8 +88,9 @@ t_imgt what_color(t_all *all)
 int calculation(t_all *all)
 {
 	int x;
-
+	
 	x = 0;
+	all->info->zBuffer = malloc(all->win->width * sizeof(double));
 
 	//printf("|%f|\n", all->info->pos_x);
 	floor_paint(all);
@@ -109,26 +111,26 @@ int calculation(t_all *all)
 		if (all->info->rayDirX < 0)
 		{
 			all->info->stepX = -1;
-			all->info->sideDistX = (all->info->pos_x - all->info->mapX) *
-								   all->info->deltaDistX;
+			all->info->sideDistX = (all->info->pos_x - all->info->mapX)
+					* all->info->deltaDistX;
 		}
 		else
 		{
 			all->info->stepX = 1;
-			all->info->sideDistX = (all->info->mapX + 1.0 - all->info->pos_x) *
-								   all->info->deltaDistX;
+			all->info->sideDistX = (all->info->mapX + 1.0 - all->info->pos_x)
+					* all->info->deltaDistX;
 		}
 		if (all->info->rayDirY < 0)
 		{
 			all->info->stepY = -1;
-			all->info->sideDistY = (all->info->pos_y - all->info->mapY) *
-								   all->info->deltaDistY;
+			all->info->sideDistY = (all->info->pos_y - all->info->mapY)
+					* all->info->deltaDistY;
 		}
 		else
 		{
 			all->info->stepY = 1;
-			all->info->sideDistY = (all->info->mapY + 1.0 - all->info->pos_y) *
-								   all->info->deltaDistY;
+			all->info->sideDistY = (all->info->mapY + 1.0 - all->info->pos_y)
+					* all->info->deltaDistY;
 		}
 
 		while (all->info->hit == 0)
@@ -184,9 +186,24 @@ int calculation(t_all *all)
 			my_pixel_put(all, x, y, color);
 			y++;
 		}
+
+		
+		all->info->zBuffer[x] = all->info->perpWallDist;
+		//perpendicular distance is used 
+// нам нельзся использовать variable length array. поэтому надо замоллочить 
+		
 		x++;
 	}
-	//sprites(all);
+	sprites(all, all->s);
+//	for(int i = 0; i < numSprites; i++) ------- кусок кода для уточнения
+//	{
+//		spriteOrder[i] = i;
+//		spriteDistance[i] = ((info->posX - sprite[i].x) * (info->posX - sprite[i].x) + (info->posY - sprite[i].y) * (info->posY - sprite[i].y)); //sqrt not taken, unneeded
+//	}
+//		double spriteOrder, double spriteDistance - закинуть в структуру
+//		int *spriteOrder = malloc(numSprites * sizeof(int));
+//		double *spriteDistance = malloc(numSprites * sizeof(double));
+//		все переменные можно закинуть в новую структуру, созданную под спрайты
 	mlx_put_image_to_window(all->mlx, all->win->win, all->img->img, 0, 0);
 	return (0);
 }

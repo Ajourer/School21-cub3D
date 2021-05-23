@@ -21,23 +21,39 @@ int	move_w(int key, t_all *all)
 		exit(0);
 	}
 	if (key == 13){
-		all->info->pos_x += all->info->dir_x * 0.05;
-		all->info->pos_y += all->info->dir_y * 0.05;
+		if (all->map[(int)(all->info->pos_y)][(int)(all->info->pos_x + 
+		(all->info->dir_x) * 0.08)] != '1')
+			all->info->pos_x += all->info->dir_x * 0.08;
+		if (all->map[(int)(all->info->pos_y + (all->info->dir_y) * 0.08)][(int)
+		(all->info->pos_x)] != '1')
+			all->info->pos_y += all->info->dir_y * 0.08;
 	}
 	if (key == 1)
 	{
-		all->info->pos_x -= all->info->dir_x * 0.05;
-		all->info->pos_y -= all->info->dir_y * 0.05;
+		if (all->map[(int)(all->info->pos_y)][(int)(all->info->pos_x - 
+		(all->info->dir_x) * 0.08)] != '1')
+			all->info->pos_x -= all->info->dir_x * 0.08;
+		if (all->map[(int)(all->info->pos_y - (all->info->dir_y) * 0.08)][(int)
+				(all->info->pos_x)] != '1')
+			all->info->pos_y -= all->info->dir_y * 0.08;
 	}
 	if (key == 0)
 	{
-		all->info->pos_x -= all->info->plane_x * 0.05;
-		all->info->pos_y -= all->info->plane_y * 0.05;
+		if (all->map[(int)(all->info->pos_y)][(int)(all->info->pos_x + 
+		(all->info->dir_y) * 0.08)] != '1')
+			all->info->pos_x += all->info->dir_y * 0.08;
+		if (all->map[(int)(all->info->pos_y - (all->info->dir_x) * 0.08)][(int)
+		(all->info->pos_x)] != '1')
+			all->info->pos_y -= all->info->dir_x * 0.08;
 	}
 	if (key == 2)
 	{
-		all->info->pos_x += all->info->plane_x * 0.05;
-		all->info->pos_y += all->info->plane_y * 0.05;
+		if (all->map[(int)(all->info->pos_y)][(int)(all->info->pos_x -
+		(all->info->dir_y) * 0.08)] != '1')
+			all->info->pos_x -= all->info->dir_y * 0.08;
+		if (all->map[(int)(all->info->pos_y + (all->info->dir_x) * 0.08)][(int)
+		(all->info->pos_x)] != '1')
+			all->info->pos_y += all->info->dir_x * 0.08;
 	}
 	if (key == 124)
 	{
