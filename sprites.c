@@ -44,8 +44,8 @@ void sprites(t_all *all, t_sprites *s)
 	sort_sprites(s->sprite_order, s->sprite_distance, all->num_spr);
 	
 	//делаем проекцию и рисуем ее
-	i = 0;
-	while (i++ < all->num_spr)
+	i = -1;
+	while (++i < all->num_spr)
 	{
 		s->sprite_x = all->spr[s->sprite_order[i]].x - all->info->pos_x;
 		s->sprite_y = all->spr[s->sprite_order[i]].y - all->info->pos_y;
