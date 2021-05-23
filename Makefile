@@ -19,7 +19,7 @@ SRCS = main.c \
 		sprites.c \
 
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 
 
 OBJS = $(SRCS:.c=.o)

@@ -31,11 +31,9 @@ void sprites(t_all *all, t_sprites *s)
 {
 	int i;
 	
-	i =0;
+	i =-1;
 	
-	s->sprite_order = malloc(all->num_spr * sizeof(int));
-	s->sprite_distance = malloc(all->num_spr * sizeof(double));
-	while (i++ < all->num_spr)
+	while (++i< all->num_spr)
 	{
 		s->sprite_order[i] = i;
 		s->sprite_distance[i] = ((all->info->pos_x - all->spr[i].x) *
@@ -43,7 +41,7 @@ void sprites(t_all *all, t_sprites *s)
 				all->spr[i].y) * (all->info->pos_y - all->spr[i].y));
 	}
 	//эта функция сортировки еще не написана
-	//sort_sprites(s->sprite_order, s->sprite_distance, all->num_spr);
+	sort_sprites(s->sprite_order, s->sprite_distance, all->num_spr);
 	
 	//делаем проекцию и рисуем ее
 	i = 0;
@@ -91,7 +89,7 @@ void sprites(t_all *all, t_sprites *s)
 			if (s->transform_y > 0 && s->stripe > 0 && s->stripe < 
 			all->win->width && s->transform_y < all->info->zBuffer[s->stripe])
 			{
-				while (y++ < s->draw_end_y)
+				while (y < s->draw_end_y)
 				{
 					d = y * 256 - all->win->height * 128 +
 							s->sprite_height * 128;
@@ -101,6 +99,7 @@ void sprites(t_all *all, t_sprites *s)
 							[all->info->texWidth * s->tex_y + s->tex_x];
 					if ((s->color & 0xFFFFFF) != 0)
 						my_pixel_put(all, s->stripe, y, s->color);
+					y++;
 				}
 			}
 		}
