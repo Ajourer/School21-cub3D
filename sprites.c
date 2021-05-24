@@ -31,7 +31,7 @@ void sprites(t_all *all, t_sprites *s)
 {
 	int i;
 	
-	i =-1;
+	i = -1;
 	
 	while (++i< all->num_spr)
 	{
@@ -77,7 +77,7 @@ void sprites(t_all *all, t_sprites *s)
 			s->draw_end_x = all->win->width - 1;
 		
 		s->stripe = s->draw_start_x;
-		while(s->stripe++ < s->draw_end_x)
+		while(s->stripe < s->draw_end_x)
 		{
 			s->tex_x = (int)(256 * (s->stripe - (-s->sprite_width / 2 +
 					s->sprite_screen_x)) * all->info->texWidth /
@@ -102,6 +102,7 @@ void sprites(t_all *all, t_sprites *s)
 					y++;
 				}
 			}
+			s->stripe++;
 		}
 	}
 }

@@ -7,9 +7,11 @@ int		parse_file(char *file, t_all *all)
 	char *newline; //строка файла, склеенная вместе с \n
 
 	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		error(5, all);
 	newline = (char*)malloc(1);
-	if (!newline || fd == -1)
-		return (-1);
+	if (!newline)
+		error(1, all);
 	newline[0] = '\0';
 	while (get_next_line(fd, &line) > 0)
 	{

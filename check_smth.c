@@ -15,7 +15,9 @@ void check_empty(char *file, t_all *all)
 			flag = 1;
 		if (flag == 1 && *line == 0)
 			error(2, all);
+		free(line);
 	}
+	free(line);
 }
 
 void check_arguments(t_all *all, int argc, char **argv)
