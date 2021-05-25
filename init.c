@@ -12,7 +12,14 @@ void		init_key(t_key *key)
 	key->c = 1;
 	key->counter = 0;
 }
-
+static	void	init_tex(t_tex *tex)
+{
+	tex->no = 0;
+	tex->so = 0;
+	tex->we = 0;
+	tex->ea = 0;
+	tex->sprites = 0;
+}
 static	void	init_img(t_img *img)
 {
 	img->img = 0;
