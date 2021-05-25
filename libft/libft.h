@@ -31,7 +31,7 @@ void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memchr(const void *arr, int c, size_t n);
 int					ft_memcmp(const void *arr1, const void *arr2, size_t n);
 size_t				ft_strlen(const char *s);
-void				ft_strlcpy(char *dst, const char *src);
+void				ft_strlcpy(char *dst, char *src, int len);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

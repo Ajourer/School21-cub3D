@@ -28,20 +28,19 @@ void map_size(t_all *all, int i)
 void create_map(t_all *all, int j)
 {
 	int i;
-	int k;
-	
+
 	all->map = (char **)malloc((all->map_h + 1) * sizeof(char *));
 	all->map[all->map_h] = 0;
 	if (!all->map)
 		error(1, all);
-	k = all->map_h;
 	i = 0;
-	while (k)
+	while (i < all->map_h)
 	{
-		all->map[i] = ft_strdup(all->array[j]);
+		all->map[i] = (char*)malloc(all->map_w + 1);
+		ft_bzero(all->map[i], all->map_w + 1);
+		ft_strlcpy(all->map[i], all->array[j], all->map_w);
 		i++;
 		j++;
-		k--;
 	}
 }
 
@@ -73,12 +72,13 @@ void valid_check(int i, int j, t_all *all)
 {
 	if (all->map[i][j] != '1' && all->map[i][j] != ' ')
 	{
-		
 		if (i - 1 < 0 || j - 1 < 0 ||
-			i + 1 >= all->map_h || j + 1 >= all->map_w || 
-			all->map[i - 1][j] == ' ' || all->map[i + 1][j] == ' ' || 
-			all->map[i][j - 1] == ' ' || all->map[i][j + 1] == ' ')
-				error(2, all);
+			i + 1 >= all->map_h || j + 1 >= all->map_w ||
+			all->map[i - 1][j] == ' ' || all->map[i + 1][j] == ' ' ||
+			all->map[i][j - 1] == ' ' || all->map[i][j + 1] == ' ' ||
+			all->map[i - 1][j] == '\0' || all->map[i + 1][j] == '\0' ||
+			all->map[i][j - 1] == '\0' || all->map[i][j + 1] == '\0')
+			error(2, all);
 	}
 }
 
