@@ -40,5 +40,6 @@ void		init_all(t_all *all)
 	//all->clr = 0;
 	all->array = 0;
 	all->mlx = mlx_init();
+	all->screenshot = 0;
 }
 

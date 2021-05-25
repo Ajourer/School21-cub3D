@@ -251,5 +251,6 @@ void	check_arguments(t_all *all, int argc, char **argv);
 void	my_pixel_put(t_all *all, int x, int y, int color);
 int 	calculation(t_all *all);
 void	sprites(t_all *all, t_sprites *s);
+void	screen(t_all *all);
 
 #endif

@@ -95,8 +95,9 @@ int main(int argc, char **argv)
 	all.img->img = mlx_new_image(all.mlx, all.win->width, all.win->height);
 	all.img->addr = mlx_get_data_addr(all.img->img, &all.img->bpp, &all.img->ll,&all.img->endian);
 	calculation(&all);
+	if (all.screenshot == 1)
+		screen(&all);
 	mlx_hook(all.win->win, 2, 0, &move_w, &all);
 	/*mlx_loop_hook(all.mlx, &calculation, &all);*/
 	mlx_loop(all.mlx);
-	
 }

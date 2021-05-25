@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -25,7 +25,7 @@ typedef struct		s_list
 void				*ft_memset(void *dest, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *restrict dst,
-					const void *restrict src, size_t n);
+				   const void *restrict src, size_t n);
 void				*ft_memccpy(void *dst, void *src, int c, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memchr(const void *arr, int c, size_t n);

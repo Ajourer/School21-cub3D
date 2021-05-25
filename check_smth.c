@@ -22,11 +22,11 @@ void check_empty(char *file, t_all *all)
 
 void check_arguments(t_all *all, int argc, char **argv)
 {
+	all->s->sprite_order = malloc(all->num_spr * sizeof(int));
+	all->s->sprite_distance = malloc(all->num_spr * sizeof(double));
 	if (argc == 2 && map_name(argv[1], all) == 1)
 	{
 		parse_all(argv, all);
-		all->s->sprite_order = malloc(all->num_spr * sizeof(int));
-		all->s->sprite_distance = malloc(all->num_spr * sizeof(double));
 		check_empty(argv[1], all);
 		all->win->win = mlx_new_window(all->mlx, all->win->width,
 								 all->win->height,"cub3D");

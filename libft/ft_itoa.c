@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-static int		num_of_dig(int n)
+static int	num_of_dig(int n)
 {
 	int		i;
 
@@ -30,19 +30,20 @@ static int		num_of_dig(int n)
 	return (i);
 }
 
-static int		abs_(int n)
+static int	abs_(int n)
 {
 	if (n >= 0)
 		return (n);
 	return (-n);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	int		i;
 
-	if (!(str = (char *)malloc(num_of_dig(n) + 1)))
+	str = (char *)malloc(num_of_dig(n) + 1);
+	if (!str)
 		return (NULL);
 	i = num_of_dig(n) - 1;
 	if (n < 0)
