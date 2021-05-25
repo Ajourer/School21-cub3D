@@ -13,6 +13,15 @@ void		init_key(t_key *key)
 	key->counter = 0;
 }
 
+static	void	init_img(t_img *img)
+{
+	img->img = 0;
+	img->addr = 0;
+	img->bpp = 0;
+	img->ll = 0;
+	img->endian = 0;
+}
+
 static void	all_malloc(t_all *all)
 {
 	all->win = malloc(sizeof(t_window) * 1);
@@ -40,5 +49,12 @@ void		init_all(t_all *all)
 	//all->clr = 0;
 	all->array = 0;
 	all->mlx = mlx_init();
+	all->screenshot = 0;
+	init_img(all->img);
+	all->tex->so = 0;
+	all->tex->we = 0;
+	all->tex->no = 0;
+	all->tex->ea = 0;
+	all->tex->sprites = 0;
 }
 

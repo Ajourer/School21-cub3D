@@ -205,6 +205,9 @@ int calculation(t_all *all)
 //		double *spriteDistance = malloc(numSprites * sizeof(double));
 //		все переменные можно закинуть в новую структуру, созданную под спрайты
 	free(all->info->zBuffer);
-	mlx_put_image_to_window(all->mlx, all->win->win, all->img->img, 0, 0);
+	free(all->s->sprite_order);
+	free(all->s->sprite_distance);
+	if (all->screenshot != 1)
+		mlx_put_image_to_window(all->mlx, all->win->win, all->img->img, 0, 0);
 	return (0);
 }

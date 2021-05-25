@@ -17,6 +17,7 @@ SRCS = main.c \
 		mlx.c \
 		wallcasting.c \
 		sprites.c \
+		screen.c \
 
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
