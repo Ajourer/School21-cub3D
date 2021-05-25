@@ -13,6 +13,14 @@ int map_name(char *name, t_all *all)
 
 	return (0);
 }
+
+int	close_button(t_all *all)
+{
+	free_all(all);
+	exit(0);
+	return (0);
+}
+
 int	move_w(int key, t_all *all)
 {
 //	printf("%d\n", key);
@@ -98,6 +106,7 @@ int main(int argc, char **argv)
 	if (all.screenshot == 1)
 		screen(&all);
 	mlx_hook(all.win->win, 2, 0, &move_w, &all);
+	mlx_hook(all.win->win, 17, 0, &close_button, &all);
 	/*mlx_loop_hook(all.mlx, &calculation, &all);*/
 	mlx_loop(all.mlx);
 }

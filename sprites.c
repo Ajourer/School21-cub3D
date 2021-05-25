@@ -32,7 +32,8 @@ void sprites(t_all *all, t_sprites *s)
 	int i;
 	
 	i = -1;
-	
+	all->s->sprite_order = malloc(all->num_spr * sizeof(int));
+	all->s->sprite_distance = malloc(all->num_spr * sizeof(double));
 	while (++i< all->num_spr)
 	{
 		s->sprite_order[i] = i;
