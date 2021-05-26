@@ -1,6 +1,6 @@
-#include "cub.h"
+#include "../cub.h"
 
-void		init_key(t_key *key)
+void	init_key(t_key *key)
 {
 	key->r = 1;
 	key->no = 1;

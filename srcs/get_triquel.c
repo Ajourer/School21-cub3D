@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void	comma_count(char *str, t_all *all)
 {

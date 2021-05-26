@@ -1,10 +1,10 @@
-#include "cub.h"
+#include "../cub.h"
 
-int		parse_file(char *file, t_all *all)
+int	parse_file(char *file, t_all *all)
 {
-	int fd;
-	char *line; //куда записывается строка, считываемая gnl
-	char *newline; //строка файла, склеенная вместе с \n
+	int		fd;
+	char	*line;
+	char	*newline;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)

@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void	valid_r_char(char *string, t_all *all)
 {

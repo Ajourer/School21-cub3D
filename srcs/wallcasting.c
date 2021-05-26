@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 int r_g_b(int r, int g, int b)
 {

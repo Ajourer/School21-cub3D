@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void	my_pixel_put(t_all *all, int x, int y, int color)
 {

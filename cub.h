@@ -224,6 +224,9 @@ void	my_pixel_put(t_all *all, int x, int y, int color);
 int 	calculation(t_all *all);
 void	sprites(t_all *all, t_sprites *s);
 void	screen(t_all *all);
-void	fill_space(t_all *all, char *str);
+void	turn_right(t_all *all);
+void	turn_left(t_all *all);
+int		close_button(t_all *all);
+int		which_key(int key, t_all *all);
 
 #endif

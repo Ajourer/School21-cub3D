@@ -1,4 +1,4 @@
-SRCS = main.c \
+FILES = main.c \
 	  parse.c \
 	  map_parse.c \
 	  get_next_line.c \
@@ -18,6 +18,10 @@ SRCS = main.c \
 		wallcasting.c \
 		sprites.c \
 		screen.c \
+		wasd_keys.c \
+		other_keys.c \
+
+SRCS = $(addprefix srcs/, $(FILES))
 
 CC = gcc
 
@@ -27,10 +31,10 @@ LIB_D = libft/
 MLX = libmlx.a
 LIB = libft.a
 
-CFLAGS = -g -Wall -Wextra -Werror -I$(MLX_D) -I$(LIB_D)#-fsanitize=address
-
+CFLAGS = -g -Wall -Wextra -Werror -I$(MLX_D) -I. -I$(LIB_D)#-fsanitize=address
 
 OBJS = $(SRCS:.c=.o)
+
 NAME = cub3D
 
 all: 		$(NAME)

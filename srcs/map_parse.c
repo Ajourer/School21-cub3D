@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void map_size(t_all *all, int i)
 {

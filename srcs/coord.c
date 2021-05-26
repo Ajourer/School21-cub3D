@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void num_of_sprites(t_all *all)
 {

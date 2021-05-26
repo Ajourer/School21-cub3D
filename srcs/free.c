@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void	free_first(t_all *all)
 {

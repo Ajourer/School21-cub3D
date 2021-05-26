@@ -11,7 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "../cub.h"
 #define BUFFER_SIZE 10
 
 size_t	len_before_n(const char *s)
@@ -28,7 +28,7 @@ size_t	len_before_n(const char *s)
 	return (0);
 }
 
-int		n_found(char **cash, char **line)
+int	n_found(char **cash, char **line)
 {
 	char	*remainder;
 	int		n;
@@ -42,7 +42,7 @@ int		n_found(char **cash, char **line)
 	return (1);
 }
 
-int		n_not_found(char **cash, char **line)
+int	n_not_found(char **cash, char **line)
 {
 	if (*cash)
 		*line = gnl_strdup(*cash);
@@ -53,18 +53,17 @@ int		n_not_found(char **cash, char **line)
 	return (0);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*cash;
 	char		*buf;
 	int			r;
 
-
-	if (BUFFER_SIZE <= 0 || fd < 0 || (!line) ||
-			!(buf = (char *)malloc(BUFFER_SIZE + 1)))
+	buf = (char *)malloc(BUFFER_SIZE + 1);
+	if (BUFFER_SIZE <= 0 || fd < 0 || (!line) || !(buf))
 		return (-1);
-
-	while (!gnl_strchr(cash, '\n') && (r = read(fd, buf, BUFFER_SIZE)))
+	r = read(fd, buf, BUFFER_SIZE);
+	while (!gnl_strchr(cash, '\n') && r)
 	{
 		if (r == -1)
 		{

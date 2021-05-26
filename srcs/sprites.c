@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void	sort_sprites(int *sprite_order, double *sprite_distance, int len)
 {

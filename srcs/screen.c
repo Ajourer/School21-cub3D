@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void int_to_char(int n, unsigned char *src)
 {

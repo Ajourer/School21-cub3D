@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void set_n(t_all *all)
 {

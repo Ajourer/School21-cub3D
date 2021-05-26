@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void	get_no(t_all *all, char *line, t_key *key)
 {

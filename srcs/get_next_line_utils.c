@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "../cub.h"
 
 char	*gnl_strchr(char *s, int c)
 {
@@ -53,7 +53,8 @@ char	*gnl_strjoin(char const *s1, char const *s2)
 	if (!s2)
 		return (NULL);
 	size = gnl_strlen(s1) + gnl_strlen(s2);
-	if (!(sum = (char *)malloc(size + 1)))
+	sum = (char *)malloc(size + 1);
+	if (!sum)
 		return (NULL);
 	while (s1 && s1[i])
 	{
