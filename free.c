@@ -16,8 +16,9 @@ void	free_first(t_all *all)
 	free(all->w_i);
 	free(all->e_i);
 	free(all->sp_i);
-	free(all->mlx);
-	free(all->win);
+//	free(all->mlx);
+//	free(all->win);
+//	free(all->window);
 	free(all->s);
 }
 
@@ -37,4 +38,3 @@ void	free_all(t_all *all)
 		free(all->map);
 	}
 }
-

@@ -23,6 +23,7 @@ int		parse_file(char *file, t_all *all)
 	free(line);
 	all->array = ft_split(newline, '\n');
 	free(newline);
+	close(fd);
 	return (0);
 }
 

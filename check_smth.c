@@ -18,6 +18,7 @@ void check_empty(char *file, t_all *all)
 		free(line);
 	}
 	free(line);
+	close(fd);
 }
 
 void check_arguments(t_all *all, int argc, char **argv)
