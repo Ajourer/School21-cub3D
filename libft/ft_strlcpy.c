@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-void ft_strlcpy(char *dst, char *src, int len)
+void	ft_strlcpy(char *dst, char *src, int len)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (len)
 	{

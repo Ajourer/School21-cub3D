@@ -1,4 +1,4 @@
-SRCS = main.c \
+FILES = main.c \
 	  parse.c \
 	  map_parse.c \
 	  get_next_line.c \
@@ -18,6 +18,7 @@ SRCS = main.c \
 		wallcasting.c \
 		sprites.c \
 		screen.c \
+		more_init.c \
 
 CC = gcc
 
@@ -29,9 +30,11 @@ LIB = libft.a
 
 CFLAGS = -g -Wall -Wextra -Werror -I$(MLX_D) -I$(LIB_D)#-fsanitize=address
 
-
 OBJS = $(SRCS:.c=.o)
+
 NAME = cub3D
+
+-include $(DEPS)
 
 all: 		$(NAME)
 
@@ -42,7 +45,7 @@ $(MLX_D)$(MLX) : $(MLX_D)
 	$(MAKE) -C $(MLX_D)
 
 $(LIB_D)$(LIB) : $(LIB_D)
-	@$(MAKE) -C $(LIB_D)
+	$(MAKE) -C $(LIB_D)
 
 clean:
 		$(MAKE) -C $(MLX_D) clean
@@ -52,7 +55,7 @@ clean:
 		$(RM) $(MLX)
 
 fclean: clean
-		$(RM) $(NAME)
+		$(RM) $(NAME) screen.bmp
 
 re: fclean all
 

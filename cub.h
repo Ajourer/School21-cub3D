@@ -6,27 +6,27 @@
 # include <math.h>
 # include "mlx/mlx.h"
 
-typedef	struct	s_imgt //структура для текстур в зависимости от стороны света
+typedef struct s_imgt//структура для текстур в зависимости от стороны света
 {
 	void		*img;
 	char		*addr;
 	int			bpp;
 	int			ll;
-	int 		endian;
+	int			endian;
 	int			w;
 	int			h;
 }				t_imgt;
 
-typedef struct	s_img
+typedef struct s_img
 {
-	void *img;
-	char *addr;
-	int bpp;
-	int ll;
-	int endian;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			ll;
+	int			endian;
 }				t_img;
 
-typedef struct	s_sprites
+typedef struct s_sprites
 {
 	int			*sprite_order;
 	double		*sprite_distance;
@@ -48,13 +48,13 @@ typedef struct	s_sprites
 	int			color;
 }				t_sprites;
 
-typedef struct	s_spr
+typedef struct s_spr
 {
-	double 			x;
-	double 			y;
+	double			x;
+	double			y;
 }				t_spr;
 
-typedef struct	s_color
+typedef struct s_color
 {
 	int			f_r;
 	int			f_g;
@@ -64,14 +64,14 @@ typedef struct	s_color
 	int			c_b;
 }				t_color;
 
-typedef struct	s_window
+typedef struct s_window
 {
 	int			width;
 	int			height;
-	void 		*win;
+	void		*win;
 }				t_window;
 
-typedef struct	s_tex //сюда закидываем путь к текстурам
+typedef struct s_tex //сюда закидываем путь к текстурам
 {
 	char		*no;
 	char		*so;
@@ -80,7 +80,7 @@ typedef struct	s_tex //сюда закидываем путь к текстур�
 	char		*sprites;
 }				t_tex;
 
-typedef struct	s_info
+typedef struct s_info
 {
 	double		pos_x;
 	double		pos_y;
@@ -93,42 +93,37 @@ typedef struct	s_info
 	int			key_s;
 	int			key_d;
 	int			key_esc;
-	//int			**texture;
 	double		moveSpeed;
 	double		rotSpeed;
-	
 	double		*zBuffer;
-	
 	double		cameraX;
 	double		rayDirX;
 	double		rayDirY;
-	int 		mapX;
-	int 		mapY;
-	double 		sideDistX;
-	double 		sideDistY;
-	double 		deltaDistX;
-	double 		deltaDistY;
-	double 		perpWallDist;
-	int 		stepX;
-	int 		stepY;
-	int 		hit;
-	int 		side;
-	int 		lineHeight;
-	int 		drawStart;
-	int 		drawEnd;
-	int 		texNum;
-	double 		wallX;
-	int 		texX;
+	int			mapX;
+	int			mapY;
+	double		sideDistX;
+	double		sideDistY;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		perpWallDist;
+	int			stepX;
+	int			stepY;
+	int			hit;
+	int			side;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
+	int			texNum;
+	double		wallX;
+	int			texX;
 	int			texY;
 	double		step;
 	double		texPos;
-	int 		texWidth;
-	int 		texHeight;
+	int			texWidth;
+	int			texHeight;
 }				t_info;
 
-
-
-typedef struct	s_key
+typedef struct s_key
 {
 	int			r;
 	int			no;
@@ -141,13 +136,13 @@ typedef struct	s_key
 	int			counter;
 }				t_key;
 
-typedef struct	s_all
+typedef struct s_all
 {
 	void		*mlx;
 	void		*window;
 	int			map_w;
 	int			map_h;
-	char 		**map; //наша заполненная карта с выделенной под нее памятью
+	char		**map;
 	t_window	*win;
 	t_tex		*tex;
 	t_color		*clr;
@@ -158,13 +153,12 @@ typedef struct	s_all
 	t_imgt		*w_i;
 	t_imgt		*e_i;
 	t_imgt		*sp_i;
-	t_img 		*img;
+	t_img		*img;
 	t_key		*key;
-	//int			color;
 	int			num_spr;
-	char		**array; //массив из строк файла
+	char		**array;
 	int			screenshot;
-	t_sprites 	*s;
+	t_sprites	*s;
 }				t_all;
 
 int		get_next_line(int fd, char **line);
@@ -185,7 +179,7 @@ void	parse_map(t_all *all);
 int		parse_file(char *file, t_all *all);
 void	valid_check(int i, int j, t_all *all);
 void	init_key(t_key *key);
-int 	type_identifier(t_all *all, char *str, t_key *key);
+int		type_identifier(t_all *all, char *str, t_key *key);
 void	valid_r_char(char *string, t_all *all);
 void	check_r(char **split, t_all *all);
 void	get_r(t_all *all, char *string, t_key *key);
@@ -194,9 +188,9 @@ void	get_no(t_all *all, char *line, t_key *key);
 void	get_so(t_all *all, char *line, t_key *key);
 void	get_we(t_all *all, char *line, t_key *key);
 void	get_ea(t_all *all, char *line, t_key *key);
-void 	get_s(t_all *all, char *line, t_key *key);
+void	get_s(t_all *all, char *line, t_key *key);
 void	nswe(t_all *all, char *s, t_key *keys);
-void 	another(t_all *all, char *s, t_key *keys);
+void	another(t_all *all, char *s, t_key *keys);
 void	parse_all(char **argv, t_all *all);
 int		map_name(char *name, t_all *all);
 void	map_part(int i, t_all *all);
@@ -218,12 +212,13 @@ void	player_dir(t_all *all, char letter);
 void	player_pos(t_all *all);
 void	check_color(t_all *all);
 void	load_texture(t_all *all, char *dir, t_imgt *dir_st);
-void 	load_images(t_all *all);
+void	load_images(t_all *all);
 void	check_arguments(t_all *all, int argc, char **argv);
 void	my_pixel_put(t_all *all, int x, int y, int color);
-int 	calculation(t_all *all);
+int		calculation(t_all *all);
 void	sprites(t_all *all, t_sprites *s);
 void	screen(t_all *all);
-void	fill_space(t_all *all, char *str);
+void	init_textures(t_imgt *t);
+void	init_tex(t_all *all);
 
 #endif
