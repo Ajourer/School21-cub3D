@@ -17,6 +17,5 @@ void	error(int error, t_all *all)
 	if (error == 7)
 		printf("Error\nInvalid texture");
 	free_all(all);
-	getc(stdin);
 	exit(1);
 }

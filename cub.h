@@ -220,5 +220,12 @@ void	sprites(t_all *all, t_sprites *s);
 void	screen(t_all *all);
 void	init_textures(t_imgt *t);
 void	init_tex(t_all *all);
+t_imgt	what_color(t_all *all);
+void	floor_paint(t_all *all);
+void	ceiling_paint(t_all *all);
+int		which_key(int key, t_all *all);
+void	turn_right(t_all *all);
+void	turn_left(t_all *all);
+int		close_button(t_all *all);
 
 #endif

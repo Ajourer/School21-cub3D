@@ -11,7 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "cub.h"
 #define BUFFER_SIZE 10
 #define EQUAL =
 
@@ -61,7 +61,7 @@ int	get_next_line(int fd, char **line)
 	int			r;
 
 	if (BUFFER_SIZE <= 0 || fd < 0 || (!line)
-		|| !(buf = (char *)malloc(BUFFER_SIZE + 1)))
+		|| !(buf EQUAL (char *)malloc(BUFFER_SIZE + 1)))
 		return (-1);
 	while (!gnl_strchr(cash, '\n') && (r EQUAL read(fd, buf, BUFFER_SIZE)))
 	{

@@ -19,6 +19,9 @@ FILES = main.c \
 		sprites.c \
 		screen.c \
 		more_init.c \
+		colors.c \
+		wasd_keys.c \
+		other_keys.c \
 
 CC = gcc
 
@@ -28,18 +31,18 @@ LIB_D = libft/
 MLX = libmlx.a
 LIB = libft.a
 
-CFLAGS = -g -Wall -Wextra -Werror -I$(MLX_D) -I$(LIB_D)#-fsanitize=address
+SRCS = $(addprefix srcs/, $(FILES))
+
+CFLAGS = -g -Wall -Wextra -Werror -I$(MLX_D) -I. -I$(LIB_D)#-fsanitize=address
 
 OBJS = $(SRCS:.c=.o)
 
 NAME = cub3D
 
--include $(DEPS)
+all:	$(NAME)
 
-all: 		$(NAME)
-
-$(NAME): $(MLX_D)$(MLX) $(OBJS) $(LIB_D)$(LIB)
-		gcc   $(CFLAGS) -framework OpenGL -framework AppKit -L./libft -lft -L./mlx -lmlx $(OBJS) -o $(NAME)
+$(NAME): $(MLX_D)$(MLX) $(OBJS) $(LIB_D)$(LIB) cub.h
+		$(CC) $(CFLAGS) -framework OpenGL -framework AppKit -L./libft -lft -L./mlx -lmlx $(OBJS) -o $(NAME)
 
 $(MLX_D)$(MLX) : $(MLX_D)
 	$(MAKE) -C $(MLX_D)
