@@ -13,14 +13,14 @@ void		init_key(t_key *key)
 	key->counter = 0;
 }
 
-//static	void	init_tex(t_all *all)
-//{
-//	all->tex->no = 0;
-//	all->tex->so = 0;
-//	all->tex->we = 0;
-//	all->tex->ea = 0;
-//	all->tex->sprites = 0;
-//}
+static	void	init_tex(t_all *all)
+{
+	all->tex->no = 0;
+	all->tex->so = 0;
+	all->tex->we = 0;
+	all->tex->ea = 0;
+	all->tex->sprites = 0;
+}
 
 static	void	init_textures(t_imgt *t)
 {
@@ -33,12 +33,12 @@ static	void	init_textures(t_imgt *t)
 	t->h = 0;
 	t->bpp = 0;
 }
-//static	void	init_win(t_window *win)
-//{
-//	win->width = 0;
-//	win->height = 0;
-//	win->win = 0;
-//}
+static	void	init_win(t_window *win)
+{
+	win->width = 0;
+	win->height = 0;
+	win->win = 0;
+}
 
 static	void	init_img(t_img *img)
 {
@@ -92,15 +92,15 @@ void		init_all(t_all *all)
 	all->map_w = 0;
 	all->map_h = 0;
 	all->map = 0;
-	all->spr = 0;
-	all->win = 0;
-	all->tex = 0;
-	all->clr = 0;
-	all->array = 0;
+//	all->spr = 0;
+//	all->win = 0;
+//	all->tex = 0;
+//	all->clr = 0;
+//	all->array = 0;
 	all->mlx = mlx_init();
 	all->screenshot = 0;
-//	init_win(all->win);
-//	init_tex(all);
+	init_win(all->win);
+	init_tex(all);
 	init_img(all->img);
 	init_sprite(all->s);
 	init_textures(all->n_i);
