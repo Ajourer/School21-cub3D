@@ -12,16 +12,6 @@ void		init_key(t_key *key)
 	key->c = 1;
 	key->counter = 0;
 }
-<<<<<<< HEAD
-static	void	init_tex(t_tex *tex)
-{
-	tex->no = 0;
-	tex->so = 0;
-	tex->we = 0;
-	tex->ea = 0;
-	tex->sprites = 0;
-}
-=======
 
 static	void	init_tex(t_all *all)
 {
@@ -50,7 +40,6 @@ static	void	init_win(t_window *win)
 	win->win = 0;
 }
 
->>>>>>> e0d65d99225d4df4990339b1077ff90bfe93f001
 static	void	init_img(t_img *img)
 {
 	img->img = 0;
@@ -113,14 +102,6 @@ void		init_all(t_all *all)
 	init_win(all->win);
 	init_tex(all);
 	init_img(all->img);
-<<<<<<< HEAD
-	init_tex(all->tex);
-	all->tex->so = 0;
-	all->tex->we = 0;
-	all->tex->no = 0;
-	all->tex->ea = 0;
-	all->tex->sprites = 0;
-=======
 	init_sprite(all->s);
 	init_textures(all->n_i);
 	init_textures(all->s_i);
@@ -132,6 +113,5 @@ void		init_all(t_all *all)
 //	all->tex->no = 0;
 //	all->tex->ea = 0;
 //	all->tex->sprites = 0;
->>>>>>> e0d65d99225d4df4990339b1077ff90bfe93f001
 }
 

@@ -20,7 +20,14 @@ SRCS = main.c \
 		screen.c \
 
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
+
+MLX_D = mlx/
+LIB_D = libft/
+
+MLX = libmlx.a
+LIB = libft.a
+
+CFLAGS = -g -Wall -Wextra -Werror -I$(MLX_D) -I$(LIB_D)#-fsanitize=address
 
 
 OBJS = $(SRCS:.c=.o)
@@ -28,11 +35,25 @@ NAME = cub3D
 
 all: 		$(NAME)
 
-$(NAME):	$(OBJS)
-			gcc   $(CFLAGS) -framework OpenGL -framework AppKit -L./libft -lft mlx/libmlx.a  $(OBJS) -o $(NAME)
+$(NAME): $(MLX_D)$(MLX) $(OBJS) $(LIB_D)$(LIB)
+		gcc   $(CFLAGS) -framework OpenGL -framework AppKit -L./libft -lft -L./mlx -lmlx $(OBJS) -o $(NAME)
+
+$(MLX_D)$(MLX) : $(MLX_D)
+	$(MAKE) -C $(MLX_D)
+
+$(LIB_D)$(LIB) : $(LIB_D)
+	@$(MAKE) -C $(LIB_D)
+
 clean:
-		rm -rf $(OBJS)
-fclean:
-		rm -rf $(OBJS)
-		rm -rf $(NAME)
+		$(MAKE) -C $(MLX_D) clean
+		$(MAKE) -C $(LIB_D) clean
+		$(RM) $(LIB_D)$(LIB)
+		$(RM) $(OBJS)
+		$(RM) $(MLX)
+
+fclean: clean
+		$(RM) $(NAME)
+
 re: fclean all
+
+.PHONY: all clean fclean re
