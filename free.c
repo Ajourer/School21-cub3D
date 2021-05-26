@@ -2,11 +2,11 @@
 
 void	free_first(t_all *all)
 {
-	free(all->tex->so);
-	free(all->tex->we);
-	free(all->tex->no);
-	free(all->tex->ea);
-	free(all->tex->sprites);
+//	free(all->tex->so);
+//	free(all->tex->we);
+//	free(all->tex->no);
+//	free(all->tex->ea);
+//	free(all->tex->sprites);
 	free(all->tex);
 	free(all->clr);
 	free(all->img);

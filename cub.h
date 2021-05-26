@@ -159,41 +159,13 @@ typedef struct	s_all
 	t_imgt		*e_i;
 	t_imgt		*sp_i;
 	t_img 		*img;
-	
+	t_key		*key;
 	//int			color;
 	int			num_spr;
 	char		**array; //массив из строк файла
 	int			screenshot;
 	t_sprites 	*s;
 }				t_all;
-
-//typedef struct	s_rayCast
-//{
-//	double		cameraX;
-//	double		rayDirX;
-//	double		rayDirY;
-//	int 		mapX;
-//	int 		mapY;
-//	double 		sideDistX;
-//	double 		sideDistY;
-//	double 		deltaDistX;
-//	double 		deltaDistY;
-//	double 		perpWallDist;
-//	int 		stepX;
-//	int 		stepY;
-//	int 		hit;
-//	int 		side;
-//	int 		lineHeight;
-//	int 		drawStart;
-//	int 		drawEnd;
-//	int 		texNum;
-//	double 		wallX;
-//	int 		texX;
-//	int			texY;
-//	double		step;
-//	double		texPos;
-//
-//}				t_rayCast;
 
 int		get_next_line(int fd, char **line);
 char	*gnl_strdup(const char *s1);
