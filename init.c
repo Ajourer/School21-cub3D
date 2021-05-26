@@ -58,6 +58,7 @@ void		init_all(t_all *all)
 	all->mlx = mlx_init();
 	all->screenshot = 0;
 	init_img(all->img);
+	init_tex(all->tex);
 	all->tex->so = 0;
 	all->tex->we = 0;
 	all->tex->no = 0;
