@@ -1,12 +1,10 @@
 R 1920 1000
-       
 NO textures/greystone.xpm
 SO textures/eagle.xpm
 WE textures/purplestone.xpm
 EA textures/wood.xpm
 S textures/greenlight.xpm
-
-C 34,56,2
+C 20,130,201
 F 0,0,0
 
       
@@ -32,6 +30,6 @@ F 0,0,0
 1000000000000001
 1000000000000001
 1000002000000001
-10000000000N0001
-1000000000000011
+1000000000000001
+10000000000000N1
 1111111111111111

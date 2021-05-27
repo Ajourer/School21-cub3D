@@ -1,10 +1,12 @@
 #include "../cub.h"
+#define A =
 
-int	parse_file(char *file, t_all *all)
+void	parse_file(char *file, t_all *all)
 {
 	int		fd;
 	char	*line;
 	char	*newline;
+	int		r;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -13,36 +15,32 @@ int	parse_file(char *file, t_all *all)
 	if (!newline)
 		error(1, all);
 	newline[0] = '\0';
-	while (get_next_line(fd, &line) > 0)
+	r = 0;
+	while ((r A get_next_line(fd, &line)))
 	{
+		if (r == -1)
+			error(5, all);
 		newline = ft_strjoin(newline, line);
 		newline = ft_strjoin(newline, "\n");
 		free(line);
 	}
 	newline = ft_strjoin(newline, line);
-	free(line);
 	all->array = ft_split(newline, '\n');
-	free(newline);
+	free_lines(line, newline);
 	close(fd);
-	return (0);
-}
-
-void	nswe(t_all *all, char *s, t_key *key)
-{
-	if (key->no && s[0] == 'N' && s[1] == 'O' && s[2] == ' ')
-		get_no(all, s, key);
-	else if (key->so && s[0] == 'S' && s[1] == 'O' && s[2] == ' ')
-		get_so(all, s, key);
-	else if (key->we && s[0] == 'W' && s[1] == 'E' && s[2] == ' ')
-		get_we(all, s, key);
-	else if (key->ea && s[0] == 'E' && s[1] == 'A' && s[2] == ' ')
-		get_ea(all, s, key);
 }
 
 int	type_identifier(t_all *all, char *str, t_key *key)
 {
-	nswe(all, str, key);
-	if (key->r && str[0] == 'R' && str[1] == ' ')
+	if (key->no && str[0] == 'N' && str[1] == 'O' && str[2] == ' ')
+		get_no(all, str, key);
+	else if (key->so && str[0] == 'S' && str[1] == 'O' && str[2] == ' ')
+		get_so(all, str, key);
+	else if (key->we && str[0] == 'W' && str[1] == 'E' && str[2] == ' ')
+		get_we(all, str, key);
+	else if (key->ea && str[0] == 'E' && str[1] == 'A' && str[2] == ' ')
+		get_ea(all, str, key);
+	else if (key->r && str[0] == 'R' && str[1] == ' ')
 		get_r(all, str, key);
 	else if (key->s && str[0] == 'S' && str[1] == ' ')
 		get_s(all, str, key);
@@ -50,6 +48,8 @@ int	type_identifier(t_all *all, char *str, t_key *key)
 		get_f(all, str, key);
 	else if (key->c && str[0] == 'C' && str[1] == ' ')
 		get_c(all, str, key);
+	else if (key->counter != 8)
+		error(4, all);
 	return (1);
 }
 

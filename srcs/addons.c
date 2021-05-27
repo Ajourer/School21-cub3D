@@ -1,5 +1,11 @@
 #include "../cub.h"
 
+void	free_lines(char *line, char *newline)
+{
+	free(line);
+	free(newline);
+}
+
 int	is_empty(char *line)
 {
 	int	i;
